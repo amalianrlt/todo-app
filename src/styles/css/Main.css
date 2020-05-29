@@ -1,0 +1,86 @@
+li{
+  list-style:none;
+}
+
+.login-container{
+  height:100vh;
+  display:flex;
+  text-align:center;
+}
+
+.logo{
+  text-align:left;
+}
+
+.intro{
+  height:95%;
+  width: 33%;
+  background-color:teal;
+  padding: 1rem;
+}
+
+.greeting {
+  margin-top: 12rem;
+  font-size:35px;
+}
+
+.description{
+  font-size:25px;
+}
+
+.blue-btn{
+  margin: 0;
+  font-size: 16px;
+  border: 1px solid white;
+  border-radius: 25rem;
+  padding: 0.5rem 2rem;
+  color: white;
+  background-color: transparent;
+  line-height: 1
+}
+
+.form{
+  text-align:center;
+  width: 67%;
+  background-color:pink;
+}
+
+.socmed-icon{
+    margin: 0.5rem;
+    background: transparent;
+    border: 1px solid grey;
+    position: relative;
+    display: inline-block;
+    width: 2rem;
+    padding: 0.3rem;
+    height: 2rem;
+    font-size: 25px;
+    color: grey;
+    border-radius: 50%;
+}
+
+.sign-intro{
+  margin-top:6rem;
+  font-size:35px;
+}
+
+.alternative{
+  font-size:15px;
+}
+
+input{
+  margin-top: 0.7rem;
+  padding:0.5rem;
+  width: 20rem;
+}
+
+.btn-register{
+  margin-top: 2rem;
+  border: 1px solid teal;
+  font-size: 16px;
+  border-radius: 25rem;
+  padding: 0.5rem 2rem;
+  color: white;
+  background-color: teal;
+  line-height: 1
+}
