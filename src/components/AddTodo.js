@@ -1,41 +1,64 @@
 import React, { Component } from 'react'
 
 export default class AddTodo extends Component {
-    state = {
-        title : ''
-      };
-    
-      change = e => {
-        this.setState({
-          [e.target.name] : e.target.value
-        })
-      }
-    
-      onSubmit = e => {
-        e.preventDefault()
-        const addNewTodo ={
-          id: this.props.todos.length+1,
-          title:this.state.title,
-          completed: false
-        }
-        this.props.addNewTodo(addNewTodo)
-        this.setState({
-          title : ''
-        })
-      }
-           
     render() {
+        const {item, change, submit} = this.props
         return (
             <div>
-                <form>
+                <form onSubmit={submit}> 
                     <input 
-                    name ="title"
-                    placeholder = "Input Here" 
-                    value= {this.state.title} 
+                    type="text"
+                    placeholder = "Enter your Todo" 
+                    value= {item} 
+                    onChange={change}/>
+                </form>          
+                <button type="submit">+</button>
+                {/* <form>
+                    <input 
+                    name ="description"
+                    placeholder = "Describe it!" 
+                    value= {this.state.description} 
                     onChange={e => this.change(e)}/>
-                    <button onClick={(e)=> this.onSubmit(e)}>+</button>
-                    </form>          
+                </form>           */}
+                {/* <form>
+                    <input 
+                    name ="deadline"
+                    placeholder = "Input your dedline" 
+                    value= {this.state.deadline} 
+                    onChange={e => this.change(e)}/>
+                </form>           */}
+                
             </div>
         )
     }
 }
+    // state = {
+    //     id : '',
+    //     name : '',
+    //     description :'',
+    //     deadline :''
+    //   };
+    
+    //   change = e => {
+    //     this.setState({
+    //       [e.target.name] : e.target.value
+    //     })
+    //   }
+    
+    //   onSubmit = e => {
+    //     e.preventDefault()
+    //     const addNewTodo ={ 
+    //       id: this.state.id,
+    //       name :this.state.name,
+    //       description: this.state.description,
+    //       deadline : this.state.deadline
+    //     }
+    //     this.props.addNewTodo(addNewTodo)
+    //     this.setState({
+    //         id : '',
+    //         name : '',
+    //         description :'',
+    //         deadline :''
+    //     })
+    //   }
+            

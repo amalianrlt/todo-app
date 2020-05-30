@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import SignUpPage from '../pages/SignUpPage'
 import LoginPage from '../pages/LoginPage'
 import MainPage from '../pages/MainPage'
-import Header from '../layout/Header'
 import WelcomePage from '../pages/WelcomePage'
 
 const Routes = () => {
