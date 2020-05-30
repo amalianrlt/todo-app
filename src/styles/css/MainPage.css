@@ -1,0 +1,27 @@
+.header-container{
+    height: 2rem;
+    background-color: teal;
+    padding: 1rem;
+    font-size: 25px;
+    align-items: center;
+}
+
+.contents{
+    height:100vh;
+    display:flex;
+    text-align:center;
+  }
+
+.side-content{
+    width: 30%;
+    background-color: thistle;
+}
+
+.main-content{
+    width: 70%;
+    background-color: wheat;
+}
+
+li {
+    margin: 1rem 0;
+}
