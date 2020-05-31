@@ -20,7 +20,7 @@ export default class TaskTodo extends Component {
         e.preventDefault()
         
         const newItem ={
-            id: this.state.length+1,
+            id: this.state.id,
             title: this.state.item
         }
         
@@ -30,7 +30,7 @@ export default class TaskTodo extends Component {
 
         this.setState({
             items: updatedItems,
-            id : '',
+            id : newItem.id+1,
             item : '',
             editItem : false
         })
@@ -38,13 +38,35 @@ export default class TaskTodo extends Component {
     }
 
     delete = (id) => {
-        const delTodo = this.state.items.filter(item => item.id !==id)
+        const deleteTodo = this.state.items.filter(item => item.id !==id)
         this.setState ({
-            items: delTodo
+            items: deleteTodo
         })
-
+        console.log('delete')
         // this.setState([...this.state.items.filter((item) => item.id !==id)])
     }
+
+    // delTodo = (id) => {
+    //     console.log('coba')
+    //     this.setState({items: [...this.state.items.filter((item) => item.id !==id)]})
+    //   }
+
+      setUpdate(title,id){
+        console.log("items:"+this.state.items);
+        const items = this.state.items;
+        items.map(item=>{      
+          if(item.id===id){
+            console.log(item.id +"    "+id)
+            item.item= title;
+          }
+        })
+        this.setState({
+          items: items
+        })
+        
+       
+      }
+    
     
     render() {
         return (
@@ -57,7 +79,8 @@ export default class TaskTodo extends Component {
                 <button onClick={(e)=> this.submit(e)}>+</button>
                 <ListTodo 
                 items={this.state.items} 
-                delete={this.delete}/>
+                delete={this.delete}
+                />
               {/* <AddTodo  addNewTodo={data => this.addNewTodo(data)}/>
                 <p>{this.state.todo}</p> */}
             </div>

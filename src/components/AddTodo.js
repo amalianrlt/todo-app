@@ -12,7 +12,7 @@ export default class AddTodo extends Component {
                     value= {item} 
                     onChange={change}/>
                 </form>          
-                <button type="submit">+</button>
+                
                 {/* <form>
                     <input 
                     name ="description"

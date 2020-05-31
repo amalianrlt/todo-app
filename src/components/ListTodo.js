@@ -1,21 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 // import { List,} from 'antd';
 
-export default class ListTodo extends React.Component {
+export default class ListTodo extends Component {
     render(){
-    const {items} =this.props
+    const {items} = this.props
     return(
       <div>
         {
-        items.map(item=>{
-            return(
+            items.map(item=>
                 <div key={item.id}>
-                  {item.title}
-                  <button onClick={()=> this.props.delete(item.id)}>delete</button>
+                  <p>{item.title}</p>
+                  <button onClick={()=> this.props.delete(item.id)}>-</button>
                 </div> 
-
             )
-            })
         }
 
         <button type="submit">edit</button>
