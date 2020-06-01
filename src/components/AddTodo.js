@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { FormGroup, Button, Input, Label} from 'reactstrap'
+import { FormGroup, CardTitle, Button, Input, Label} from 'reactstrap'
 
 export default class AddTodo extends Component {
     render() {
         const {title, change, submit} = this.props
         return (
             <div>
-                <FormGroup onSubmit ={submit}> 
-                    <Label for="Todo">Todo</Label>
-                    <Input className="form-control" 
+                <CardTitle style={{fontSize:30}}>Todo</CardTitle>
+                <FormGroup className="d-flex justify-content-center" onSubmit ={submit}> 
+                    <Input className="form-control w-50 mr-20 " 
                     type="text"
                     placeholder = "Enter your Todo" 
                     value= {title} 

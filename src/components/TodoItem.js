@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, FormGroup } from 'reactstrap'
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class TodoItem extends Component {
     render() {
@@ -7,10 +9,10 @@ export default class TodoItem extends Component {
         return (
             <div>
                 <Form>
-                  <FormGroup>
-                    <h3>{title}</h3>
-                    <Button onClick={handleEdit}>Edit</Button>
-                    <Button onClick={handleDelete}>Delete</Button>
+                  <FormGroup className="d-flex justify-content-center align-items-*-baseline">
+                    <h5>{title}</h5>
+                    <FontAwesomeIcon size="lg" onClick={handleEdit} icon={faEdit} />
+                    <FontAwesomeIcon size="lg" onClick={handleDelete} icon={faTrash} />
                   </FormGroup>
                   </Form>
             </div>

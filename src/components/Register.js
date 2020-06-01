@@ -11,35 +11,57 @@ export default class Register extends Component {
 		data:[]
 	}
 	
-	handleChange = (e) =>{
-		e.preventDefault();
+	// handleChange = (e) =>{
+	// 	e.preventDefault();
 
-		this.setState({
-			[e.target.id]: e.target.value
-		})
-	}
+	// 	this.setState({
+  //     [e.target.id]: e.target.value
+	// 	})
+  // }
+  
+    // handeChange = (key, val) =>{
+    // this.setState({ [key]: val })
+    // }
 
-	getRegister = async(name, email, password)=>{
-		try{
-			const res = await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/register", {
-				name: name,
-				email: email,
-				password: password
-			})
-			this.setState({data:res.data})
-			console.log(this.state.data)
-			console.log(this.state.data.status)
-			alert(`Account has been register`)
-			if(this.state.data.status === "success"){
-					console.log(res.data)
-					alert(`welcome`)
-			}
-			} catch (err) {
-					console.log(err)
-					alert(`Account register failed`)
-			}
+  onChangeName = (event) => {
+    this.setState({
+      name: event.target.value,
+    })
+  }
 
-		}
+  onChangeEmail = (event) => {
+    this.setState({
+      email: event.target.value,
+    })
+  }
+
+  onChangePassword = (event) => {
+    this.setState({
+      password: event.target.value
+    })
+  }
+
+	// getRegister = async(name, email, password)=>{
+	// 	try{
+	// 		const res = await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/register", {
+	// 			name: name,
+	// 			email: email,
+	// 			password: password
+	// 		})
+	// 		this.setState({data:res.data})
+	// 		console.log(this.state.data)
+	// 		console.log(this.state.data.status)
+	// 		alert(`Account has been register`)
+	// 		if(this.state.data.status === "success"){
+	// 				console.log(res.data)
+	// 				alert(`welcome`)
+	// 		}
+	// 		} catch (err) {
+	// 				console.log(err)
+	// 				alert(`Account register failed`)
+	// 		}
+
+	// 	}
 
 	
 	// getRegister(){
@@ -54,9 +76,28 @@ export default class Register extends Component {
 		
 	
 
-	handleSubmit = (e) => {
-		e.preventDefault()
-		this.getRegister()
+	handleSubmit = async (e) => {
+    e.preventDefault()
+      try { 
+        await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/register", {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password
+        }) .then(res=>{
+            const status = res.status
+            if(status===201){
+              alert(`register sukses`)
+            } else if (status ===422){
+              alert(`akun uda terdaftar`)
+            }
+        })
+        } catch (err) {
+            console.log(err)
+            alert(`Account register failed`)
+        }
+  
+      
+		// this.getRegister()
 	// 	axios.post("https://miniproject-team-a.herokuapp.com/api/v1/register", {
 	// 		name: this.state.name,
 	// 		email: this.state.email,
@@ -80,25 +121,31 @@ export default class Register extends Component {
 									<i className="fab fa-google-plus-g"/>
 									<i className="fab fa-linkedin-in"/>
 									<p>or use your email for registration</p>
-								<Form onClick={(e)=> this.handleSubmit(e)}>
+								<Form onSubmit={(e)=> this.handleSubmit(e)} >
 									<FormGroup>
 										<Input id="name"
 										type="text"
 										placeholder="Name"
 										value={this.state.name}
-										onChange={this.handleChange}
+                    onChange={this.onChangeName}
+                    // onChangeText={(key, val) => this.handleChange(id,event)}
+                    // onChange={val => this.handleChange("name", val)}
 										/>
 										<Input id="email"
 										type="text"
 										placeholder="Email"
 										value={this.state.email}
-										onChange={this.handleChange}
+                    onChange={this.onChangeEmail}
+                    // onChangeText={(event) => this.handleChange(id,event)}
+                    // onChange={val => this.handleChange('email', val)}
 										/>
 										<Input id="password"
 										type="text" //nanti ganti ya
 										placeholder="Password"
 										value={this.state.password}
-										onChange={this.handleChange}
+                    onChange={this.onChangePassword}
+                    // onChangeText={(event) => this.handleChange(id, event)}
+                    // onChange={val => this.handleChange('password', val)}
 										/>
 										<Button>SIGN UP</Button>
 									</FormGroup>
