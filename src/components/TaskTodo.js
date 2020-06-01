@@ -58,9 +58,9 @@ export default class TaskTodo extends Component {
         return (
             <div>
                 <AddTodo 
-                item={this.state.item} 
                 change={this.change}
-                submit={this.submit}                                 
+                submit={this.submit} 
+                title={this.state.title}                                
                 />
                 <ListTodo 
                 items={this.state.items}

@@ -3,7 +3,7 @@ import { FormGroup, Button, Input, Label} from 'reactstrap'
 
 export default class AddTodo extends Component {
     render() {
-        const {item, change, submit} = this.props
+        const {title, change, submit} = this.props
         return (
             <div>
                 <FormGroup onSubmit ={submit}> 
@@ -11,7 +11,7 @@ export default class AddTodo extends Component {
                     <Input className="form-control" 
                     type="text"
                     placeholder = "Enter your Todo" 
-                    value= {item} 
+                    value= {title} 
                     onChange={change}/>
                 <Button color="secondary" size="sm"  onClick={(e)=> submit(e)}>+</Button>
                 </FormGroup>          

@@ -1,20 +1,21 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SignUpPage from '../pages/SignUpPage'
 import LoginPage from '../pages/LoginPage'
 import MainPage from '../pages/MainPage'
 import WelcomePage from '../pages/WelcomePage'
 
-const Routes = () => {
+function Routes(){
   return (
-    <div>
-      <Route path ="/" exact>
-        <WelcomePage/>
-      </Route>
-      <Route path ="/signup" exact><SignUpPage/> </Route>
-      <Route path ="/login" exact><LoginPage/>   </Route>
-      <Route path ="/mainpage"><MainPage/>  </Route> 
-    </div>
+    <Router>
+      <Switch>
+        <Route path ="/" component={WelcomePage}exact/>
+        <Route path ="/signup" component={SignUpPage}exact/>
+        <Route path ="/login" component={LoginPage} exact/>
+        <Route path ="/mainpage" component={MainPage}/>
+        <Route component ={()=> "Pages Not Found"}/>
+      </Switch>
+    </Router>
   )
 }
 
