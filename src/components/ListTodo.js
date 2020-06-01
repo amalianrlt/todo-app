@@ -1,22 +1,31 @@
 import React, { Component } from 'react'
 // import { List,} from 'antd';
+import TodoItem from './TodoItem'
 
 export default class ListTodo extends Component {
     render(){
-    const {items} = this.props
+      const {items, handleDelete, handleEdit} = this.props
     return(
       <div>
-        {
-            items.map(item=>
-                <div key={item.id}>
-                  <p>{item.title}</p>
-                  <button onClick={()=> this.props.delete(item.id)}>-</button>
-                </div> 
-            )
-        }
+        {items.map(item => {
+          return (
+            <TodoItem
+              key={item.id}
+              title={item.title}
+              handleDelete={() => handleDelete(item.id)}
+              handleEdit={() => handleEdit(item.id)}
+            />
+          );
+        })}
+       </div>
+    )}}
 
-        <button type="submit">edit</button>
-      </div>
-    )
-  }
-}
+            // {/* <div>
+            //     { editMode? 
+            //     <div>
+            //       <input type="text" defaultValue={item.title}/>
+            //     </div> :
+            //     <div onDoubleClick ={editMode}>{item.title}
+            //     </div>}
+            // </div>
+            // <Button color="primary" onClick={()=> this.props.delete(item.id)}>delete</Button> */}

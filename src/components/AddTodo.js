@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
+import { FormGroup, Button, Input, Label} from 'reactstrap'
 
 export default class AddTodo extends Component {
     render() {
         const {item, change, submit} = this.props
         return (
             <div>
-                <form onSubmit={submit}> 
-                    <input 
+                <FormGroup onSubmit ={submit}> 
+                    <Label for="Todo">Todo</Label>
+                    <Input className="form-control" 
                     type="text"
                     placeholder = "Enter your Todo" 
                     value= {item} 
                     onChange={change}/>
-                </form>          
-                
+                <Button color="secondary" size="sm"  onClick={(e)=> submit(e)}>+</Button>
+                </FormGroup>          
                 {/* <form>
                     <input 
                     name ="description"
@@ -32,33 +34,4 @@ export default class AddTodo extends Component {
         )
     }
 }
-    // state = {
-    //     id : '',
-    //     name : '',
-    //     description :'',
-    //     deadline :''
-    //   };
-    
-    //   change = e => {
-    //     this.setState({
-    //       [e.target.name] : e.target.value
-    //     })
-    //   }
-    
-    //   onSubmit = e => {
-    //     e.preventDefault()
-    //     const addNewTodo ={ 
-    //       id: this.state.id,
-    //       name :this.state.name,
-    //       description: this.state.description,
-    //       deadline : this.state.deadline
-    //     }
-    //     this.props.addNewTodo(addNewTodo)
-    //     this.setState({
-    //         id : '',
-    //         name : '',
-    //         description :'',
-    //         deadline :''
-    //     })
-    //   }
             

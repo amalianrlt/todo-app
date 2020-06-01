@@ -24,19 +24,6 @@ render(){
             <div className ="todo">
                 <TaskTodo/>
             </div>
-            <div className ="task">
-              <p>your task here</p>
-              {/* <div className ="edit-task">
-                  {this.props.todos.map( item => {
-                  return(
-                    <div key={item.id}>
-                      <h1>{item.name}</h1>
-                      <button onClick={()=> this.props.delTodo(item.id)}>delete</button>
-                    </div>
-                  )
-                })}
-              </div> */}
-            </div>
         </div>
     </div>
     </div>

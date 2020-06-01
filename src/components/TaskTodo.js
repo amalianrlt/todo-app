@@ -6,13 +6,13 @@ export default class TaskTodo extends Component {
     state = {
         items:[],
         id:"",
-        item:"",
-        editItem: false
+        title:"",
+        editTitle: false
     };
     
     change = (e) => {
         this.setState({
-             item : e.target.value
+        title : e.target.value
         })
     }
     
@@ -21,86 +21,54 @@ export default class TaskTodo extends Component {
         
         const newItem ={
             id: this.state.id,
-            title: this.state.item
+            title: this.state.title
         }
-        
-        console.log(newItem)
-        
         const updatedItems= [...this.state.items, newItem]
 
         this.setState({
             items: updatedItems,
             id : newItem.id+1,
-            item : '',
-            editItem : false
+            title : ""
         })
         
     }
 
-    delete = (id) => {
+    handleDelete = (id) => {
         const deleteTodo = this.state.items.filter(item => item.id !==id)
         this.setState ({
             items: deleteTodo
         })
-        console.log('delete')
-        // this.setState([...this.state.items.filter((item) => item.id !==id)])
     }
 
-    // delTodo = (id) => {
-    //     console.log('coba')
-    //     this.setState({items: [...this.state.items.filter((item) => item.id !==id)]})
-    //   }
+    handleEdit = (id) =>{
+        const deleteTodo = this.state.items.filter(item => item.id !== id);
 
-      setUpdate(title,id){
-        console.log("items:"+this.state.items);
-        const items = this.state.items;
-        items.map(item=>{      
-          if(item.id===id){
-            console.log(item.id +"    "+id)
-            item.item= title;
-          }
-        })
-        this.setState({
-          items: items
+        const selectedItem = this.state.items.find(item => item.id===id)
+        console.log(selectedItem)
+        this.setState ({
+            items: deleteTodo,
+            title: selectedItem.title,
+            editTitle: true,
+            id: id
         })
         
-       
-      }
-    
-    
+    }
+                                  
     render() {
         return (
             <div>
                 <AddTodo 
                 item={this.state.item} 
                 change={this.change}
-                submit={this.submit}
+                submit={this.submit}                                 
                 />
-                <button onClick={(e)=> this.submit(e)}>+</button>
                 <ListTodo 
-                items={this.state.items} 
-                delete={this.delete}
+                items={this.state.items}
+                handleDelete={this.handleDelete}
+                handleEdit={this.handleEdit}
                 />
-              {/* <AddTodo  addNewTodo={data => this.addNewTodo(data)}/>
-                <p>{this.state.todo}</p> */}
-            </div>
-        )
+
+    </div>
+    )
     }
-}
-    
-    
-    //   addNewTodo = (data)=>{
-        //     //   this.setState({data})
-        
-        //     this.setState({
-            //       todos: [...this.state.todos, data]
-    //     })
-    //     console.log(this.state.todos)
-    //   };
-    
-    //   delTodo = (id) => {
-    //     console.log('coba')
-    //     this.setState({todos: [...this.state.todos.filter((item) => item.id !==id)]})
-    //   }
-    
-    
+    }
