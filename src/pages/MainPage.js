@@ -9,7 +9,7 @@ render(){
   return(
     <div>
       <div className="header-container">
-        <Link to ="/"> Todo </Link>  ||  
+        <Link style={{color:"#ffffff"}} to ="/"> Todo </Link>  ||  
         <Link to ="/">Sign Out</Link>
       </div>
       <div className="contents">
@@ -23,7 +23,6 @@ render(){
         </div>
         <div className ="main-content">
             <div className ="todo">
-                <ListTodo/>
                 <TaskTodo/>
 
             </div>

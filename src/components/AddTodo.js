@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FormGroup, CardTitle, Button, Input, Label} from 'reactstrap'
+import { Form, FormGroup, CardTitle, Button, Input, Label} from 'reactstrap'
 
 export default class AddTodo extends Component {
     render() {
@@ -7,14 +7,17 @@ export default class AddTodo extends Component {
         return (
             <div>
                 <CardTitle style={{fontSize:30}}>Todo</CardTitle>
-                <FormGroup className="d-flex justify-content-center" onSubmit ={submit}> 
-                    <Input className="form-control w-50 mr-20 " 
-                    type="text"
-                    placeholder = "Enter your Todo" 
-                    value= {name} 
-                    onChange={change}/>
-                <Button color="secondary" size="sm"  onClick={(e)=> submit(e)}>+</Button>
-                </FormGroup>          
+                <Form onSubmit={(e)=> submit(e)}>
+
+                    <FormGroup className="d-flex justify-content-center" onSubmit ={submit}> 
+                        <Input className="form-control w-50 mr-20 " 
+                        type="text"
+                        placeholder = "Enter your Todo" 
+                        value= {name} 
+                        onChange={change}/>
+                    <Button color="primary" size="sm">+ Add</Button>
+                    </FormGroup>          
+                </Form>
                 {/* <form>
                     <input 
                     name ="description"

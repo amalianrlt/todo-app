@@ -4,22 +4,32 @@ import TodoItem from './TodoItem'
  
 
 export default class ListTodo extends Component{
+
   render(){
     const {data, handleDelete, handleEdit, handleImportant, handleCheckList} = this.props
+
+    // render 1 data = undefined
+    // render 2 data = []
+    console.log(data)
     return(
       <div>
-        {data.map(item => {
+        { data.length > 0 ? data.map(item => {
           return (
             <TodoItem
               key={item.id}
-              title={item.title}
+              name={item.name}
+              completed={item.completed}
               handleDelete={() => handleDelete(item.id)}
               handleEdit={() => handleEdit(item.id)}
               handleImportant={()=> handleImportant(item.id)}
               handleCheckList={()=> handleCheckList(item.id)}
             />
           );
-        })}
+        })
+        :
+        <div>Loading...</div>
+      
+      }
        </div>
 
     )

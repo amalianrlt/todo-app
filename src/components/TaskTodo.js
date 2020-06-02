@@ -12,13 +12,29 @@ export default class TaskTodo extends Component {
         id:"",
         name:"",
         editName: false,
-        complete: false
+        completed: false
     };
     
     change = (e) => {
+      
         this.setState({
         name : e.target.value
         })
+    }
+
+    async componentDidMount(){
+      token = localStorage.getItem("token")
+      try {
+        const res  = await axios.get(`${baseUrl}/tasks`, {
+          headers:{
+            Authorization: token
+          }
+        })
+
+        this.setState({ data: res.data.data })
+      }catch(error) {
+        console.log(error)
+      }
     }
     
 
@@ -39,20 +55,21 @@ export default class TaskTodo extends Component {
     // componentDidMount() {
     //   this.getAllTask()
     // }
-  
+
 
     submit =  (e) => {
+
         e.preventDefault()
         const newTodo ={
-            id: this.state.id,
-            name: this.state.name
+            id: this.state.data.length + 1,
+            name: this.state.name,
+            completed: false
         }
-        const updatedData= [...this.state.data, newTodo]
+        let updatedTodo = [...this.state.data, newTodo]
+        console.log(updatedTodo)
 
         this.setState({
-            data: updatedData,
-            id : newTodo.id+1,
-            name : ""
+            data: updatedTodo
         })
         
     }
@@ -87,29 +104,34 @@ export default class TaskTodo extends Component {
     }
 
     handleCheckList = (id) => {
+      console.log('check', id)
+
       this.setState({
-          data:this.state.data.map(item=>{
-          if(item.id === id){
-            return{
-              id:item.id,
-              name:item.name,
-              complete:!item.complete
+          data: this.state.data.map(item => {
+            if(item.id === id){
+              return{
+                id:item.id,
+                name:item.name,
+                completed: !item.completed
+              }
+            } else {
+              return item
             }
-          } else {
-            return item
-          }
         })
       })
 
-        // const checkList = this.state.items.filter(item=> item.id === id)
+        // const checkList = this.state.data.filter(item=> item.id === id)
         // console.log(checkList)
-        console.log('check')
+      
         
     }
                                   
     render() {
         return (
             <div>
+                <div>
+                  {this.getAllTask}
+                </div>
                 <AddTodo 
                 change={this.change}
                 submit={this.submit} 
@@ -121,9 +143,9 @@ export default class TaskTodo extends Component {
                 handleEdit={this.handleEdit}
                 handleImportant={this.handleImportant}
                 handleCheckList={this.handleCheckList}
-                // getAllTask={this.getAllTask}
+                getAllTask={this.getAllTask}
                 />
              </div>
              )
          }
-    }
+  }
