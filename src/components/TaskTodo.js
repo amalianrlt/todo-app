@@ -1,62 +1,85 @@
 import React, { Component } from 'react'
 import AddTodo from './AddTodo'
 import ListTodo from './ListTodo'
+import axios from 'axios'
+
+const baseUrl = "https://miniproject-team-a.herokuapp.com/api/v1"
+let token
 
 export default class TaskTodo extends Component {
     state = {
-        items:[],
+        data:[],
         id:"",
-        title:"",
-        editTitle: false,
+        name:"",
+        editName: false,
         complete: false
     };
     
     change = (e) => {
         this.setState({
-        title : e.target.value
+        name : e.target.value
         })
     }
     
+
+    // getAllTask = async () => {
+    //   token = window.localStorage.getItem("token")
+    //   try {
+    //     const res  = await axios.get(`${baseUrl}/tasks`, {
+    //       headers:{
+    //         Authorization: token
+    //       }
+    //     })
+    //     this.setState({ data: res.data.data.token })
+    //   }catch(error) {
+    //     console.log(error)
+    //   }
+    // }
+  
+    // componentDidMount() {
+    //   this.getAllTask()
+    // }
+  
+
     submit =  (e) => {
         e.preventDefault()
-        
-        const newItem ={
+        const newTodo ={
             id: this.state.id,
-            title: this.state.title
+            name: this.state.name
         }
-        const updatedItems= [...this.state.items, newItem]
+        const updatedData= [...this.state.data, newTodo]
 
         this.setState({
-            items: updatedItems,
-            id : newItem.id+1,
-            title : ""
+            data: updatedData,
+            id : newTodo.id+1,
+            name : ""
         })
         
     }
 
     handleDelete = (id) => {
-        const deleteTodo = this.state.items.filter(item => item.id !==id)
+        const deleteTodo = this.state.data.filter(item => item.id !==id)
         this.setState ({
-            items: deleteTodo
+            data: deleteTodo
         })
     }
 
     handleEdit = (id) =>{
-        const deleteTodo = this.state.items.filter(item => item.id !== id);
+        const deleteTodo = this.state.data.filter(item => item.id !== id);
 
-        const selectedItem = this.state.items.find(item => item.id===id)
+        const selectedItem = this.state.data.find(item => item.id===id)
         console.log(selectedItem)
         this.setState ({
-            items: deleteTodo,
-            title: selectedItem.title,
-            editTitle: true,
+            data: deleteTodo,
+            name: selectedItem.name,
+            editName: true,
             id: id
         })
         
     }
 
     handleImportant = (id) => {
-      const selectedTodo = this.state.items.find(item => item.id===id)
+      const selectedTodo = this.state.data.find(item => item.id===id)
 
         console.log(selectedTodo)
         console.log('tes')
@@ -65,11 +88,11 @@ export default class TaskTodo extends Component {
 
     handleCheckList = (id) => {
       this.setState({
-        items:this.state.items.map(item=>{
+          data:this.state.data.map(item=>{
           if(item.id === id){
             return{
               id:item.id,
-              title:item.title,
+              name:item.name,
               complete:!item.complete
             }
           } else {
@@ -90,16 +113,17 @@ export default class TaskTodo extends Component {
                 <AddTodo 
                 change={this.change}
                 submit={this.submit} 
-                title={this.state.title}                                
+                name={this.state.name}                                
                 />
                 <ListTodo 
-                items={this.state.items}
+                data={this.state.data}
                 handleDelete={this.handleDelete}
                 handleEdit={this.handleEdit}
                 handleImportant={this.handleImportant}
                 handleCheckList={this.handleCheckList}
+                // getAllTask={this.getAllTask}
                 />
-                 </div>
+             </div>
              )
          }
     }

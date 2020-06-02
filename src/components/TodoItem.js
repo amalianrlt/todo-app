@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class TodoItem extends Component {
     render() {
-        const { title, handleDelete, handleEdit, handleImportant, handleCheckList, complete} = this.props
+        const { name, handleDelete, handleEdit, handleImportant, handleCheckList, complete} = this.props
         return (
             <div>
                 <Form>
@@ -15,7 +15,7 @@ export default class TodoItem extends Component {
                     <h5
                      style={{textDecoration: complete? "line-through" : ""}}
                      onClick={handleCheckList} 
-                    >{title}</h5>
+                    >{name}</h5>
                     <FontAwesomeIcon size="lg" onClick={handleEdit} icon={faEdit} />
                     <FontAwesomeIcon size="lg" onClick={handleDelete} icon={faTrash} />
                     <FontAwesomeIcon size="lg" icon={faStar} onClick={handleImportant} />

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 // import { List,} from 'antd';
 import TodoItem from './TodoItem'
+ 
 
-export default class ListTodo extends Component {
-    render(){
-      const {items, handleDelete, handleEdit, handleImportant, handleCheckList} = this.props
-      
+export default class ListTodo extends Component{
+  render(){
+    const {data, handleDelete, handleEdit, handleImportant, handleCheckList} = this.props
     return(
       <div>
-        {items.map(item => {
+        {data.map(item => {
           return (
             <TodoItem
               key={item.id}
@@ -21,7 +21,12 @@ export default class ListTodo extends Component {
           );
         })}
        </div>
-    )}}
+
+    )
+  }
+}
+
+
 
             // {/* <div>
             //     { editMode? 

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Form, FormGroup, Input, Button} from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Input, Button, CardTitle} from 'reactstrap';
 import axios from 'axios';
+import { withRouter} from 'react-router-dom'
 
 const baseUrl = "https://miniproject-team-a.herokuapp.com/api/v1"
-let token
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
 		id: "",
 		email: "",
@@ -35,54 +35,14 @@ export default class Login extends Component {
       try {
         const res =await axios.post(`${baseUrl}/login`, addUser)
         console.log(res.data)
-        if(res.data.status === "Success"){
-          localStorage.setItem('token', res.data.data.token)
-          this.props.history.replace('/mainpage')
+        if(res.data.status === "success"){
+          window.localStorage.setItem('token', res.data.data.access_token)
+          this.props.history.push('/mainpage')
         }
         
       } catch (err) {
         console.log(err)
-      }
-    
-
-    // const userData ={
-    //   password:this.state.password,
-    //   email:this.state.email
-    //   }
-  
-    //   try {
-    //     const res =await axios.post(`${baseUrl}/login`, userData)
-    //     console.log(res.data)
-    //     if(res.data.status === "Success"){
-    //       localStorage.setItem('token', res.data.data.token)
-    //       this.props.history.push('/mainpage')
-    //     }
-        
-    //   } catch (err) { 
-    //     console.log(err)
-    //   }
-  
-
-      // try { 
-      //   await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/login", {
-      //     email: this.state.email,
-      //     password: this.state.password
-      //   }) .then(res=>{
-      //       const status = res.status
-      //       if(status===200){
-      //         alert(`login sukses`)
-      //       } else{
-      //         alert(`coba lagi`)
-      //       }
-      //       console.log(res.data)
-      //   })
-      //   } catch (err) {
-      //       console.log(err)
-      //       alert(`Account register failed`)
-      //   }
-      }
-  
-      
+      }}
 
   render() {
     return (
@@ -90,11 +50,11 @@ export default class Login extends Component {
       <Container>
         <Row style={{height: "100vh", width:"100%"}}className="align-items-center" >
           <Col>
-              {/* <CardTitle>Created Account</CardTitle>
+               <CardTitle>Created Account</CardTitle>
                 <i className="fab fa-facebook-f"/>
                 <i className="fab fa-google-plus-g"/>
                 <i className="fab fa-linkedin-in"/>
-                <p>or use your email for registration</p> */}
+                <p>or use your email for registration</p>
               <Form onSubmit={this.handleSubmit} >
                 <FormGroup>
                   <Input className='mb-2'
@@ -123,3 +83,4 @@ export default class Login extends Component {
     )
   }
   }
+  export default withRouter (Login)

@@ -4,8 +4,8 @@ import '../styles/css/Main.css'
 import Login from '../components/Login'
 import { Card, Button, Container } from 'reactstrap';
 
-export default class MainPage extends React.Component{
-  render(){
+  export default class MainPage extends React.Component{
+    render(){
   return (
     <div className="login-body">
       <div className ="logo"><Link to ="/">Todos</Link></div>

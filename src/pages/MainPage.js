@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import "../styles/css/MainPage.css"
 import TaskTodo from '../components/TaskTodo';
+import ListTodo from '../components/ListTodo';
 
 export default class MainPage extends React.Component{
 render(){
@@ -22,7 +23,9 @@ render(){
         </div>
         <div className ="main-content">
             <div className ="todo">
+                <ListTodo/>
                 <TaskTodo/>
+
             </div>
 
         </div>

@@ -3,7 +3,7 @@ import { FormGroup, CardTitle, Button, Input, Label} from 'reactstrap'
 
 export default class AddTodo extends Component {
     render() {
-        const {title, change, submit} = this.props
+        const {name, change, submit} = this.props
         return (
             <div>
                 <CardTitle style={{fontSize:30}}>Todo</CardTitle>
@@ -11,7 +11,7 @@ export default class AddTodo extends Component {
                     <Input className="form-control w-50 mr-20 " 
                     type="text"
                     placeholder = "Enter your Todo" 
-                    value= {title} 
+                    value= {name} 
                     onChange={change}/>
                 <Button color="secondary" size="sm"  onClick={(e)=> submit(e)}>+</Button>
                 </FormGroup>          
