@@ -94,6 +94,7 @@ export default class Register extends Component {
 			  localStorage.setItem('token', res.data.data.token)
 			  this.props.history.push('/mainpage')
 		  }
+		  
 	  } catch (err) {
 		  console.log(err)
 	  }

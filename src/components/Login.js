@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Container, Row, Col, Form, FormGroup, Input, Button} from 'reactstrap';
 import axios from 'axios';
 
+const baseUrl = "https://miniproject-team-a.herokuapp.com/api/v1"
+let token
+
 export default class Login extends Component {
   state = {
 		id: "",
@@ -24,27 +27,62 @@ export default class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault()
 
-   
-
-      try { 
-        await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/login", {
-          email: this.state.email,
-          password: this.state.password
-        }) .then(res=>{
-            const status = res.status
-            if(status===200){
-              alert(`login sukses`)
-            } else{
-              alert(`coba lagi`)
-            }
-            console.log(res.data)
-        })
-        } catch (err) {
-            console.log(err)
-            alert(`Account register failed`)
-        }
+    const addUser ={
+      password:this.state.password,
+      email:this.state.email
       }
   
+      try {
+        const res =await axios.post(`${baseUrl}/login`, addUser)
+        console.log(res.data)
+        if(res.data.status === "Success"){
+          localStorage.setItem('token', res.data.data.token)
+          this.props.history.replace('/mainpage')
+        }
+        
+      } catch (err) {
+        console.log(err)
+      }
+    
+
+    // const userData ={
+    //   password:this.state.password,
+    //   email:this.state.email
+    //   }
+  
+    //   try {
+    //     const res =await axios.post(`${baseUrl}/login`, userData)
+    //     console.log(res.data)
+    //     if(res.data.status === "Success"){
+    //       localStorage.setItem('token', res.data.data.token)
+    //       this.props.history.push('/mainpage')
+    //     }
+        
+    //   } catch (err) { 
+    //     console.log(err)
+    //   }
+  
+
+      // try { 
+      //   await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/login", {
+      //     email: this.state.email,
+      //     password: this.state.password
+      //   }) .then(res=>{
+      //       const status = res.status
+      //       if(status===200){
+      //         alert(`login sukses`)
+      //       } else{
+      //         alert(`coba lagi`)
+      //       }
+      //       console.log(res.data)
+      //   })
+      //   } catch (err) {
+      //       console.log(err)
+      //       alert(`Account register failed`)
+      //   }
+      }
+  
+      
 
   render() {
     return (
