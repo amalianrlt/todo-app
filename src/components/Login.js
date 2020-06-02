@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, CardTitle, Form, FormGroup, Input, Button} from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Input, Button} from 'reactstrap';
 import axios from 'axios';
 
 export default class Login extends Component {
@@ -23,13 +23,16 @@ export default class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
+
+   
+
       try { 
         await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/login", {
           email: this.state.email,
           password: this.state.password
         }) .then(res=>{
             const status = res.status
-            if(status==200){
+            if(status===200){
               alert(`login sukses`)
             } else{
               alert(`coba lagi`)
@@ -56,13 +59,17 @@ export default class Login extends Component {
                 <p>or use your email for registration</p> */}
               <Form onSubmit={this.handleSubmit} >
                 <FormGroup>
-                  <Input id="email"
+                  <Input className='mb-2'
+                  style={{width:300}}
+                  id="email"
                   type="text"
                   placeholder="Email"
                   value={this.state.email}
                   onChange={this.onChangeEmail}
                   />
-                  <Input id="password"
+                  <Input className='mb-3'
+                  style={{width:300}}
+                  id="password"
                   type="text" //nanti ganti ya
                   placeholder="Password"
                   value={this.state.password}

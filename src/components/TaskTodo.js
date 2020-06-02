@@ -7,7 +7,8 @@ export default class TaskTodo extends Component {
         items:[],
         id:"",
         title:"",
-        editTitle: false
+        editTitle: false,
+        complete: false
     };
     
     change = (e) => {
@@ -53,6 +54,35 @@ export default class TaskTodo extends Component {
         })
         
     }
+
+    handleImportant = (id) => {
+      const selectedTodo = this.state.items.find(item => item.id===id)
+
+        console.log(selectedTodo)
+        console.log('tes')
+        
+    }
+
+    handleCheckList = (id) => {
+      this.setState({
+        items:this.state.items.map(item=>{
+          if(item.id === id){
+            return{
+              id:item.id,
+              title:item.title,
+              complete:!item.complete
+            }
+          } else {
+            return item
+          }
+        })
+      })
+
+        // const checkList = this.state.items.filter(item=> item.id === id)
+        // console.log(checkList)
+        console.log('check')
+        
+    }
                                   
     render() {
         return (
@@ -66,9 +96,10 @@ export default class TaskTodo extends Component {
                 items={this.state.items}
                 handleDelete={this.handleDelete}
                 handleEdit={this.handleEdit}
+                handleImportant={this.handleImportant}
+                handleCheckList={this.handleCheckList}
                 />
-
-    </div>
-    )
-    }
+                 </div>
+             )
+         }
     }

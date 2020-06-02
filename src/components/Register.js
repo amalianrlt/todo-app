@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, CardTitle, Form, FormGroup, Input, Button} from 'reactstrap';
 import axios from 'axios';
+import { Link } from "react-router-dom"
 
+const baseUrl = "https://miniproject-team-a.herokuapp.com/api/v1"
 export default class Register extends Component {
 	state = {
 		id: "",
@@ -77,24 +79,43 @@ export default class Register extends Component {
 	
 
 	handleSubmit = async (e) => {
-    e.preventDefault()
-      try { 
-        await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/register", {
-          name: this.state.name,
-          email: this.state.email,
-          password: this.state.password
-        }) .then(res=>{
-            const status = res.status
-            if(status===201){
-              alert(`register sukses`)
-            } else if (status ===422){
-              alert(`akun uda terdaftar`)
-            }
-        })
-        } catch (err) {
-            console.log(err)
-            alert(`Account register failed`)
-        }
+	e.preventDefault()
+	
+	const newUser ={
+		name: this.state.name,
+		password:this.state.password,
+		email:this.state.email
+	  }
+
+	  try {
+		  const res =await axios.post(`${baseUrl}/register`, newUser)
+		  console.log(res.data)
+		  if(res.data.status === "Success"){
+			  localStorage.setItem('token', res.data.data.token)
+			  this.props.history.push('/mainpage')
+		  }
+	  } catch (err) {
+		  console.log(err)
+	  }
+
+    //   try { 
+    //     await axios.post("https://miniproject-team-a.herokuapp.com/api/v1/register", {
+    //       name: this.state.name,
+    //       email: this.state.email,
+    //       password: this.state.password
+    //     }) .then(res=>{
+	// 		console.log(res, "post")
+    //         const status = res.status
+    //         if(status===201){
+    //           alert(`register sukses`)
+    //         } else if (status ===422){
+    //           alert(`akun uda terdaftar`)
+    //         }
+    //     })
+    //     } catch (err) {
+    //         console.log(err)
+    //         alert(`Account register failed`)
+    //     }
   
       
 		// this.getRegister()
@@ -114,7 +135,7 @@ export default class Register extends Component {
 		return (
 			<div>
 				<Container>
-					<Row style={{height: "100vh", width:"100%"}}className="align-items-center" >
+					<Row style={{height: "100vh"}}className="align-items-center" >
 						<Col>
 								<CardTitle>Created Account</CardTitle>
 									<i className="fab fa-facebook-f"/>

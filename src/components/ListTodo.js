@@ -4,7 +4,8 @@ import TodoItem from './TodoItem'
 
 export default class ListTodo extends Component {
     render(){
-      const {items, handleDelete, handleEdit} = this.props
+      const {items, handleDelete, handleEdit, handleImportant, handleCheckList} = this.props
+      
     return(
       <div>
         {items.map(item => {
@@ -14,6 +15,8 @@ export default class ListTodo extends Component {
               title={item.title}
               handleDelete={() => handleDelete(item.id)}
               handleEdit={() => handleEdit(item.id)}
+              handleImportant={()=> handleImportant(item.id)}
+              handleCheckList={()=> handleCheckList(item.id)}
             />
           );
         })}
