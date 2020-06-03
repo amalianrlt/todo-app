@@ -49,17 +49,15 @@ export default class TaskTodo extends Component {
         e.preventDefault()
         token = localStorage.getItem("token")
         const newTodo ={
-            id: this.state.data.length + 1,
+            // id: this.state.data.length + 1,
             name: this.state.name,
             description: this.state.description,
             deadline: this.state.deadline,
-            finished: false,
-            important: false
         }
         let updatedTodo = [...this.state.data, newTodo]
         console.log(updatedTodo)
         try {
-          const updatedTodo = await axios.post(`${baseUrl}/tasks`, newTodo, {
+          const res = await axios.post(`${baseUrl}/tasks`, newTodo, {
             headers:{
               Authorization: token
             }
@@ -73,34 +71,36 @@ export default class TaskTodo extends Component {
 
     }
 
-  //   submit =  (e) => {
-
-  //     e.preventDefault()
-  //     const newTodo ={
-  //       id: this.state.data.length + 1,
-  //       name: this.state.name,
-  //       description: this.state.description,
-  //       deadline: this.state.deadline,
-  //       finished: false,
-  //       important: false
-  //     }
-  //     let updatedTodo = [...this.state.data, newTodo]
-  //     console.log(updatedTodo)
-
-  //     this.setState({
-  //         data: updatedTodo
-  //     })
-      
-  // }
-
-
-
-    handleDelete = (id) => {
-        const deleteTodo = this.state.data.filter(item => item.id !==id)
-        this.setState ({
-            data: deleteTodo
+    handleDelete = async(id) => {
+        token = localStorage.getItem("token")
+        try {
+          const res = await axios.delete(`${baseUrl}/tasks/${id}`, {
+            headers:{
+              Authorization: token
+            }
+          })
+          this.setState ({
+            data: this.state.data.filter(item => item.id !==id)
         })
+        } catch (error) {
+          console.log(error)
+        }
     }
+
+    // deleteItem = async(id) => {
+    //   token = localStorage.getItem("token")
+    //   try {
+    //     const res = await axios.delete(`${baseUrl}/task/${id}`,{
+    //       headers: {
+    //         auth: token
+    //       }
+    //     })
+    //     this.setState({tasks: this.state.tasks.filter(item => item.id !== id)})
+    //   }catch(err) {
+    //     console.log(err)
+    //   }
+    // }
+  
 
     handleEdit = (id) =>{
         const deleteTodo = this.state.data.filter(item => item.id !== id);
