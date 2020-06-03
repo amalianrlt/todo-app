@@ -11,16 +11,23 @@ export default class TaskTodo extends Component {
         data:[],
         id:"",
         name:"",
-        editName: false,
-        completed: false
+        description: "",
+        deadline: "20/10/2020 00:00",
+        finished: false,
+        important: false
     };
     
-    change = (e) => {
-      
+    changeName = (e) => {
         this.setState({
-        name : e.target.value
+        name : e.target.value,
         })
     }
+
+    changeDescription = (e) => {
+      this.setState({
+      description : e.target.value,
+      })
+  }
 
     async componentDidMount(){
       token = localStorage.getItem("token")
@@ -38,41 +45,55 @@ export default class TaskTodo extends Component {
     }
     
 
-    // getAllTask = async () => {
-    //   token = window.localStorage.getItem("token")
-    //   try {
-    //     const res  = await axios.get(`${baseUrl}/tasks`, {
-    //       headers:{
-    //         Authorization: token
-    //       }
-    //     })
-    //     this.setState({ data: res.data.data.token })
-    //   }catch(error) {
-    //     console.log(error)
-    //   }
-    // }
-  
-    // componentDidMount() {
-    //   this.getAllTask()
-    // }
-
-
-    submit =  (e) => {
-
+    submit = async (e) => {
         e.preventDefault()
+        token = localStorage.getItem("token")
         const newTodo ={
             id: this.state.data.length + 1,
             name: this.state.name,
-            completed: false
+            description: this.state.description,
+            deadline: this.state.deadline,
+            finished: false,
+            important: false
         }
         let updatedTodo = [...this.state.data, newTodo]
         console.log(updatedTodo)
-
-        this.setState({
+        try {
+          const updatedTodo = await axios.post(`${baseUrl}/tasks`, newTodo, {
+            headers:{
+              Authorization: token
+            }
+          })  
+          this.setState({
             data: updatedTodo
         })
-        
+        } catch (error) {
+          console.log(error)
+        }
+
     }
+
+  //   submit =  (e) => {
+
+  //     e.preventDefault()
+  //     const newTodo ={
+  //       id: this.state.data.length + 1,
+  //       name: this.state.name,
+  //       description: this.state.description,
+  //       deadline: this.state.deadline,
+  //       finished: false,
+  //       important: false
+  //     }
+  //     let updatedTodo = [...this.state.data, newTodo]
+  //     console.log(updatedTodo)
+
+  //     this.setState({
+  //         data: updatedTodo
+  //     })
+      
+  // }
+
+
 
     handleDelete = (id) => {
         const deleteTodo = this.state.data.filter(item => item.id !==id)
@@ -112,7 +133,7 @@ export default class TaskTodo extends Component {
               return{
                 id:item.id,
                 name:item.name,
-                completed: !item.completed
+                finished: !item.finished
               }
             } else {
               return item
@@ -125,6 +146,14 @@ export default class TaskTodo extends Component {
       
         
     }
+
+    handleLogout = e => {
+      e.preventDefault()
+      localStorage.removeItem("token");
+      this.props.history.push("/")
+      console.log('cek')
+    }
+  
                                   
     render() {
         return (
@@ -133,9 +162,11 @@ export default class TaskTodo extends Component {
                   {this.getAllTask}
                 </div>
                 <AddTodo 
-                change={this.change}
+                changeName={this.changeName}
+                changeDescription={this.changeDescription}
                 submit={this.submit} 
-                name={this.state.name}                                
+                name={this.state.name} 
+                description={this.state.description}                               
                 />
                 <ListTodo 
                 data={this.state.data}
@@ -144,6 +175,7 @@ export default class TaskTodo extends Component {
                 handleImportant={this.handleImportant}
                 handleCheckList={this.handleCheckList}
                 getAllTask={this.getAllTask}
+                handleLogout={this.handleLogout}
                 />
              </div>
              )

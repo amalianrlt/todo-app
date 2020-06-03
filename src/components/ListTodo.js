@@ -6,7 +6,7 @@ import TodoItem from './TodoItem'
 export default class ListTodo extends Component{
 
   render(){
-    const {data, handleDelete, handleEdit, handleImportant, handleCheckList} = this.props
+    const {data, handleDelete, handleEdit, handleImportant, handleCheckList, handleLogout} = this.props
 
     // render 1 data = undefined
     // render 2 data = []
@@ -18,11 +18,13 @@ export default class ListTodo extends Component{
             <TodoItem
               key={item.id}
               name={item.name}
-              completed={item.completed}
+              description={item.description}
+              finished={item.finished}
               handleDelete={() => handleDelete(item.id)}
               handleEdit={() => handleEdit(item.id)}
               handleImportant={()=> handleImportant(item.id)}
               handleCheckList={()=> handleCheckList(item.id)}
+              handleLogout={handleLogout}
             />
           );
         })

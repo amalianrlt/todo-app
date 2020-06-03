@@ -61,3 +61,11 @@ font-weight: bold;
   border-radius: 50%;
   margin: 1rem 1rem
 }
+
+.button:focus{
+  outline:0
+}
+
+.sign-button:focus{
+  outline:0
+}
