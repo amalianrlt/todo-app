@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormGroup, CardTitle, Button, Input, Label} from 'reactstrap'
+import { Form, FormGroup, CardTitle, Button, Input} from 'reactstrap'
 
 export default class AddTodo extends Component {
     render() {

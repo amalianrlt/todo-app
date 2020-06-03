@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, CardTitle, Form, FormGroup, Input, Button} from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Input, Button} from 'reactstrap';
 import axios from 'axios';
 import { Link } from "react-router-dom"
 
@@ -135,10 +135,9 @@ export default class Register extends Component {
 	render() {
 		return (
 			<div>
-				<Container>
+				<Container className="register-form">
 					<Row style={{height: "100vh"}}className="align-items-center" >
 						<Col>
-								<CardTitle>Created Account</CardTitle>
 									<i className="fab fa-facebook-f"/>
 									<i className="fab fa-google-plus-g"/>
 									<i className="fab fa-linkedin-in"/>
@@ -169,7 +168,8 @@ export default class Register extends Component {
                     // onChangeText={(event) => this.handleChange(id, event)}
                     // onChange={val => this.handleChange('password', val)}
 										/>
-										<Button>SIGN UP</Button>
+										<Button className="mt-4">SIGN UP</Button>
+										<Link to = "/login"><p style={{ marginLeft:85, paddingTop:20}} className="have-account">Already have an account?</p></Link>
 									</FormGroup>
 								</Form>
 						</Col>

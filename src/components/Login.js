@@ -50,11 +50,11 @@ class Login extends Component {
       <Container>
         <Row style={{height: "100vh", width:"100%"}}className="align-items-center" >
           <Col>
-               <CardTitle>Created Account</CardTitle>
-                <i className="fab fa-facebook-f"/>
-                <i className="fab fa-google-plus-g"/>
-                <i className="fab fa-linkedin-in"/>
-                <p>or use your email for registration</p>
+               <CardTitle className="bold-title">ENTER</CardTitle>
+                <p>Login and start making your todo</p>
+                {/* <i className="icon fab fa-facebook-f"/>
+                <i className="icon fab fa-google-plus-g"/>
+                <i className="icon fab fa-linkedin-in"/> */}
               <Form onSubmit={this.handleSubmit} >
                 <FormGroup>
                   <Input className='mb-2'

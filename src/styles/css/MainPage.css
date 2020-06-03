@@ -1,28 +1,10 @@
-.header-container{
-    height: 5rem;
-    background-color: teal;
-    color: white;
-    padding: 1rem;
-    font-size: 25px;
-    align-items: center;
+
+.side-left-todo{
+    padding-left: 50;
+    height: 30rem;
+    
 }
 
-.contents{
-    height:100vh;
-    display:flex;
-    text-align:center;
-  }
-
-.side-content{
-    width: 30%;
-    background-color: thistle;
-}
-
-.main-content{
-    width: 70%;
-    background-color: wheat;
-}
-
-li {
-    margin: 1rem 0;
+.side-right-todo{
+    width: 10%;
 }

@@ -1,7 +1,40 @@
 .welcome{
   margin:0;
   border: none;
-  height:100vh;
+  width: 100vh;
+  height:100vh!;
   text-align:center;
-  background-color:lightGrey;
+
+}
+
+.d-flex{
+  float: left;
+  width: 100%;
+}
+
+.set-image{
+  margin-left: -15rem;
+  margin-top: 2rem;
+  width: 80%;
+}
+
+.register-button{
+  align-self: flex-end;
+}
+
+.have-account{
+  width:12rem;
+  font-size: 13px;
+}
+
+.landing-page-text{
+  text-align: left;
+  max-width: 35%;
+  left: 0rem;
+  top: 10rem;
+}
+
+.get-started-button{
+  width: 30%;
+  margin-top: 1rem;
 }

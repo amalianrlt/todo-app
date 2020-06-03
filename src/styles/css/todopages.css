@@ -1,0 +1,63 @@
+.card{
+  margin: 0;
+  border: none;
+  text-align: center;
+  height: 100vh!;
+}
+
+li{
+  list-style: none;
+}
+
+.register-image{
+  margin-top: 4rem;
+  margin-left: -6rem;
+  width: 120%;
+}
+
+.register-image{
+  margin-top: 4rem;
+  margin-left: -6rem;
+  width: 120%;
+}
+
+.greeting{
+  margin-top: 10rem;
+  height: auto;
+}
+
+.register-form{
+  margin-top: -12rem;
+  width: 70%;
+}
+
+.fab{
+  border: 1px solid #28689A ;
+  padding: 0.5rem;
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  font-size: 30px;
+  color: #28689A;
+  border-radius: 50%;
+  margin: 1rem 1rem
+}
+
+.bold-title{
+font-size: 50px;
+font-weight: bold;
+}
+
+.icon{
+  border: 1px solid black ;
+  padding: 0.7rem;
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  font-size: 28px;
+  color: #3F4657;
+  border-radius: 50%;
+  margin: 1rem 1rem
+}
