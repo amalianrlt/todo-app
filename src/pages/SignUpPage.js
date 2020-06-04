@@ -11,7 +11,7 @@ export default class SignUpPage extends React.Component {
       <Link to ="/"><div className ="logo">Todos</div></Link>
       <Container className="card-group container-fluid">
         <Card>
-        <img className="register-image" src={require('../styles/images/Add User-bro.svg')}/>
+        <img className="register-image" src={require('../styles/images/Add User-bro.svg')} alt="pic" />
         </Card>
         <Card>
           <h1 className ="greeting">Welcome To the Todo Club!</h1>

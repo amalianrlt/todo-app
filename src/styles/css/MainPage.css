@@ -1,11 +1,79 @@
 
-.side-left-todo{
-    padding-left: 50;
-    height: 30rem;
-    
+.mainpage-page{
+    background-color: lightgray;
+    max-height: 150vh;
+    border-radius: none;
 }
 
-.side-right-todo{
-    width: 10%;
+.add-todo-button{
+    margin-left: 84%;
+    width: 5rem;
+    text-align: center;
+    background-color: lightslategray;
 }
 
+.form-control{
+    width:34.5rem;
+}
+
+.card-user-todo{
+    width: 20rem;
+    height: 100vh;
+}
+
+
+.card-todo-todo{
+    border: 1px solid lightgray;
+    border-radius: 50px;
+    padding: 2rem;
+    width: 40rem;
+}
+
+.card-container-todo{
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 5rem;
+    background-color: lightgray;
+}
+
+.todo-list-name-desc{
+    text-align: left;
+    margin-left: 4rem;
+}
+
+.todo-list-container{
+
+    display: flex;
+    border-top: 1px solid grey;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    width: 34rem;
+
+}
+
+.icon-checklist{
+    color: grey;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+}
+
+.user-img{
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+    margin: 2rem 4rem;
+}
+
+.todo-list-task{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 2rem;
+    margin-left: -2rem;
+}
+
+.signout-button{
+    margin-top: 4rem;
+    width: 10rem;
+    margin-left: 4rem;
+    border-radius: 10px;
+}

@@ -1,7 +1,6 @@
 .card{
   margin: 0;
   border: none;
-  text-align: center;
   height: 100vh!;
 }
 
@@ -28,7 +27,8 @@ li{
 
 .register-form{
   margin-top: -12rem;
-  width: 70%;
+  margin-left: -1rem;
+  width: 30rem;
 }
 
 .fab{
@@ -69,3 +69,4 @@ font-weight: bold;
 .sign-button:focus{
   outline:0
 }
+

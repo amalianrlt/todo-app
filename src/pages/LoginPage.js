@@ -11,7 +11,7 @@ import { Card, Container } from 'reactstrap';
       <div className ="logo"><Link to ="/">Todos</Link></div>
       <Container className="card-group container-fluid">
         <Card className="card" style={{width:300}}>
-          <img className="login-image" src={require('../styles/images/Mobile login-rafiki.svg')}/>
+          <img className="login-image" src={require('../styles/images/Mobile login-rafiki.svg')} alt="pic" />
         </Card>
         <Login/>
       </Container>
