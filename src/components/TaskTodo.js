@@ -133,26 +133,29 @@ export default class TaskTodo extends Component {
     }
   };
 
-  handleImportant = (id) => {
+
+  handleImportant = async(id) => {
     // console.log(selectedTodo);
     console.log("tes");
     // const selectedTodo = this.state.data.find((item) => item.id === id);
-    this.setState({
+    await this.setState({
+    
       data : this.state.data.map((item) => {
+      
         if(
           item.id===id){
             return{
-              id: item.id,
-              name: item.name,
-              description:item.description,
-              important: true
+              ...item,
+              important: !item.important
             };
           } else{
-            return (item)
+            return (
+              item
+            )
           }
       })
     })
-
+    console.log(this.state.data)
   };
 
   handleCheckList = (id) => {
@@ -162,8 +165,7 @@ export default class TaskTodo extends Component {
       data: this.state.data.map((item) => {
         if (item.id === id) {
           return {
-            id: item.id,
-            name: item.name,
+            ...item,
             finished: true
           };
         } else {
