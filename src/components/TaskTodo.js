@@ -145,10 +145,10 @@ export default class TaskTodo extends Component {
               id: item.id,
               name: item.name,
               description:item.description,
-              important: false
+              important: true
             };
           } else{
-            return item
+            return (item)
           }
       })
     })

@@ -27,6 +27,7 @@ export default class TodoItem extends Component {
               className="icon-checklist"
               icon={faCheckCircle}
               style={{ alignItems: "left" }}
+              onClick={handleCheckList}
             />
           <div className="todo-list-card">
             <div className="todo-list-name-desc">
@@ -34,7 +35,6 @@ export default class TodoItem extends Component {
                 style={{
                   textDecoration: `${finished ? "line-through" : "none"} `,
                 }}
-                onClick={handleCheckList}
                 className="title-todo"
               >
                 {name}
@@ -53,7 +53,7 @@ export default class TodoItem extends Component {
                 />
                 <FontAwesomeIcon
                   style={{
-                    marginRight:20, color:`${important? "yellow" : "none"}`,
+                    marginRight:20, color:`${important? "grey" : "none"}`,
                 }}
                   icon={faStar}
                   onClick={handleImportant}
