@@ -13,9 +13,10 @@ export default class AddTodo extends Component {
     } = this.props;
     return (
       <div>
-        <CardTitle style={{ fontSize: 30, marginLeft:9 }}>Welcome!</CardTitle>
+        <CardTitle style={{ fontSize: 30, marginLeft:9, fontWeight:"bold" }}>Welcome!</CardTitle>
         <CardTitle style={{ marginBottom:20, marginLeft:9 }} >Looks like today is a perfect day to make your todo!</CardTitle>
-        <Form onSubmit={(e) => submit(e)}>
+        <Form 
+        onSubmit={(e) => submit(e)}>
           <FormGroup className="form-add"
             onSubmit={submit}
           >
@@ -33,9 +34,19 @@ export default class AddTodo extends Component {
               value={description}
               onChange={changeDescription}
             />
-            <Button color="primary" className="add-todo-button" >
+            {/* <Input
+              className="form-control mx-2 mb-2"
+              type="date"
+              placeholder="Describe your Todo!"
+              value={deadline}
+              onChange={changeDeadline}
+            /> */}
+            
+            <Button color="primary" className="add-todo-button" onSubmit={(e) => submit(e)} > add </Button> 
+            
+            {/* <Button color="primary" className="add-todo-button" >
               Add
-            </Button>
+            </Button> */}
           </FormGroup>
         </Form>
         {/* <form>

@@ -12,8 +12,9 @@ export default class TaskTodo extends Component {
     data: [],
     id: "",
     name: "",
+    editName: false,
     description: "",
-    deadline: "20/10/2020 00:00",
+    deadline: "20/10/2020 00:02",
     finished: false,
     important: false,
   };
@@ -30,8 +31,14 @@ export default class TaskTodo extends Component {
     });
   };
 
+  changeDeadline = (e) => {
+    this.setState({
+      deadline: e.target.value,
+    });
+  };
+
   async componentDidMount() {
-    this.props.userTodo()
+    this.props.userTodo();
     token = localStorage.getItem("token");
     try {
       const res = await axios.get(`${baseUrl}/tasks`, {
@@ -51,9 +58,10 @@ export default class TaskTodo extends Component {
     token = localStorage.getItem("token");
     const newTodo = {
       // id: this.state.data.length + 1,
+      id:this.state.id, 
       name: this.state.name,
       description: this.state.description,
-      deadline: this.state.deadline,
+      deadline: "01/01/2021 10:30",
     };
     let updatedTodo = [...this.state.data, newTodo];
     console.log(updatedTodo);
@@ -65,6 +73,9 @@ export default class TaskTodo extends Component {
       });
       this.setState({
         data: updatedTodo,
+        name: "",
+        description: "",
+        deadline: ""
       });
     } catch (error) {
       console.log(error);
@@ -87,32 +98,18 @@ export default class TaskTodo extends Component {
     }
   };
 
-  // handleEdit = (id) =>{
-  //     const deleteTodo = this.state.data.filter(item => item.id !== id);
-  //     const selectedItem = this.state.data.find(item => item.id===id)
-  //     console.log(selectedItem)
-  //     this.setState ({
-  //         data: deleteTodo,
-  //         name: selectedItem.name,
-  //         editName: true,
-  //         id: id
-  //     })
-
-  // }
-
   handleEdit = async (id) => {
     token = localStorage.getItem("token");
     const deleteTodo = this.state.data.filter((item) => item.id !== id);
     const selectedItem = this.state.data.find((item) => item.id === id);
-    console.log(selectedItem.name);
+    console.log(this.state.data);
     try {
       const res = await axios.put(
-        `${baseUrl}/tasks/${id}`
-        ,
+        `${baseUrl}/tasks/${id}`,
         {
           name: selectedItem.name,
           description: selectedItem.description,
-          id:selectedItem.id
+          id: id
         },
         {
           headers: {
@@ -126,53 +123,109 @@ export default class TaskTodo extends Component {
         name: selectedItem.name,
         description: selectedItem.description,
         editName: true,
-        id:selectedItem.id
+        id: selectedItem.id,
       });
     } catch (error) {
       console.log(error);
     }
   };
 
+  // handleImportant = async(id) => {
+  //   // console.log(selectedTodo);
+  //   console.log("tes");
+  //   // const selectedTodo = this.state.data.find((item) => item.id === id);
+  //   await this.setState({
+    
+  //     data : this.state.data.map((item) => {
+      
+  //       if(
+  //         item.id===id){
+  //           return{
+  //             ...item,
+  //             important: !item.important
+  //           };
+  //         } else{
+  //           return (
+  //             item
+  //           )
+  //         }
+  //     })
+  //   })
+  //   console.log(this.state.data)
+  // };
 
-  handleImportant = async(id) => {
+  handleImportant = async (id) => {
     // console.log(selectedTodo);
     console.log("tes");
-    // const selectedTodo = this.state.data.find((item) => item.id === id);
-    await this.setState({
-    
-      data : this.state.data.map((item) => {
-      
-        if(
-          item.id===id){
-            return{
+
+    try {
+      const res = await axios.patch(
+        `${baseUrl}/tasks/${id}/important`, {
+          id:this.state.id,
+          name:this.state.name,
+          description: this.state.description,
+          deadline: this.state.deadline,
+          finished: false,
+          important: false,
+        }, {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      this.setState({
+        data: this.state.data.map((item) => {
+          if (item.id === id) {
+            return {
               ...item,
-              important: !item.important
+              important: !item.important,
             };
-          } else{
-            return (
-              item
-            )
+          } else {
+            return item;
           }
-      })
-    })
-    console.log(this.state.data)
+        }),
+      });
+    } catch (error) {
+      console.log(error)
+    }
+    // const selectedTodo = this.state.data.find((item) => item.id === id)
+    console.log(this.state.data);
   };
 
-  handleCheckList = (id) => {
+  handleCheckList = async(id) => {
     console.log("check", id);
-
-    this.setState({
+    try {
+      const res = await axios.patch(
+        `${baseUrl}/tasks/${id}/finish`,{
+          id:this.state.id,
+          name:this.state.name,
+          description: this.state.description,
+          deadline: this.state.deadline,
+          finished: false,
+          important: false,
+        }, {
+          headers: {
+            Authorization: token,
+          },
+        }
+      )
+      console.log('cekk:', res.data)
+      this.setState({
       data: this.state.data.map((item) => {
         if (item.id === id) {
           return {
             ...item,
-            finished: true
+            completed: !item.completed,
           };
         } else {
           return item;
         }
       }),
     });
+    } catch (error) {
+      console.log(error)
+    }
+    
 
     // const checkList = this.state.data.filter(item=> item.id === id)
     // console.log(checkList)
@@ -192,9 +245,12 @@ export default class TaskTodo extends Component {
         <AddTodo
           changeName={this.changeName}
           changeDescription={this.changeDescription}
+          changeDeadline={this.changeDeadline}
+          deadline={this.deadline}
           submit={this.submit}
           name={this.state.name}
           description={this.state.description}
+          handleEdit={this.handleEdit}
         />
         <ListTodo
           data={this.state.data}

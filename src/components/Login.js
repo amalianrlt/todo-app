@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Container, Row, Col, Form, FormGroup, Input, Button, CardTitle} from 'reactstrap';
 import axios from 'axios';
 import '../styles/css/todopages.css'
-import { withRouter} from 'react-router-dom'
+import { withRouter, Link} from 'react-router-dom'
+import swal from 'sweetalert2'
 
 const baseUrl = "https://miniproject-team-a.herokuapp.com/api/v1"
 
@@ -38,11 +39,15 @@ class Login extends Component {
         console.log(res.data)
         if(res.data.status === "success"){
           window.localStorage.setItem('token', res.data.data.access_token)
+          swal.fire ("Login successfully!", "Let's start your todo", "success");
           this.props.history.push('/mainpage')
+        } else if (res.data.status !== "success"){
+          swal.fire ("Sorry:(", "Please put your correct email and password", "error");
         }
         
       } catch (err) {
         console.log(err)
+        swal.fire ("Sorry:(", "Please put your correct email and password", "error");
       }}
 
   render() {
@@ -74,7 +79,15 @@ class Login extends Component {
                   value={this.state.password}
                   onChange={this.onChangePassword}
                   />
-                  <Button >SIGN IN</Button>
+                  <Button color="primary" >SIGN IN</Button>
+                  <Link to="/signup">
+                    <p
+                      style={{ marginLeft: 85, paddingTop: 20 }}
+                      className="have-account"
+                    >
+                      I already have an account here
+                    </p>
+                  </Link>
                 </FormGroup>
               </Form>
           </Col>

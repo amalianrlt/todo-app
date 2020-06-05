@@ -28,7 +28,7 @@ class WelcomePage extends React.Component {
               Already have an account?
             </NavbarText>
           </Link>
-          <Button className="register-button" href="/signup">
+          <Button color="primary" className="register-button" href="/signup">
             Register
           </Button>
         </Navbar>

@@ -25,7 +25,7 @@ export default class ListTodo extends Component {
                 name={item.name}
                 description={item.description}
                 important={item.important}
-                finished={item.finished}
+                completed={item.completed}
                 handleDelete={() => handleDelete(item.id)}
                 handleEdit={() => handleEdit(item.id)}
                 handleImportant={() => handleImportant(item.id)}

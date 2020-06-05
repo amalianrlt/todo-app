@@ -17,24 +17,28 @@ export default class TodoItem extends Component {
       handleEdit,
       handleImportant,
       handleCheckList,
-      finished,
+      completed,
       important
     } = this.props;
     return (
-        <Container className="todo-list-container" >
+        <Container className="todo-list-container" style={{
+           backgroundColor:`${completed? "#f4f4f4" : ""}`,
+      }} >
             <FontAwesomeIcon
               size="3x"
               className="icon-checklist"
               icon={faCheckCircle}
-              style={{ alignItems: "left" }}
               onClick={handleCheckList}
+              style={{
+                alignItems: "left", color:`${completed? "green" : ""}`,
+            }}
             />
           <div className="todo-list-card">
             <div className="todo-list-name-desc">
               <h5
-                style={{
-                  textDecoration: `${finished ? "line-through" : "none"} `,
-                }}
+                // style={{
+                //   textDecoration: `${finished ? "line-through" : "none"} `,
+                // }}
                 className="title-todo"
               >
                 {name}
@@ -53,7 +57,7 @@ export default class TodoItem extends Component {
                 />
                 <FontAwesomeIcon
                   style={{
-                    marginRight:20, color:`${important? "grey" : "none"}`,
+                    marginRight:20, color:`${important? "#ffbf00" : "black"}`,
                 }}
                   icon={faStar}
                   onClick={handleImportant}
