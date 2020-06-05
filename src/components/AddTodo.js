@@ -34,35 +34,9 @@ export default class AddTodo extends Component {
               value={description}
               onChange={changeDescription}
             />
-            {/* <Input
-              className="form-control mx-2 mb-2"
-              type="date"
-              placeholder="Describe your Todo!"
-              value={deadline}
-              onChange={changeDeadline}
-            /> */}
-            
             <Button color="primary" className="add-todo-button" onSubmit={(e) => submit(e)} > add </Button> 
-            
-            {/* <Button color="primary" className="add-todo-button" >
-              Add
-            </Button> */}
           </FormGroup>
         </Form>
-        {/* <form>
-                    <input 
-                    name ="description"
-                    placeholder = "Describe it!" 
-                    value= {this.state.description} 
-                    onChange={e => this.changeName(e)}/>
-                </form>           */}
-        {/* <form>
-                    <input 
-                    name ="deadline"
-                    placeholder = "Input your dedline" 
-                    value= {this.state.deadline} 
-                    onChange={e => this.changeName(e)}/>
-                </form>           */}
       </div>
     );
   }

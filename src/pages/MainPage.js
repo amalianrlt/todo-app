@@ -11,8 +11,8 @@ let token;
 class MainPage extends React.Component {
   state = {
     data: [],
-    image_url: {
-      value: "",
+    image_url: {// klo di state image_url seluruh yg berhubungan sama ini harus image_url jg
+      value: "", // ak liat salah satunya yg bkin error nama variabelnya beda2
       file: null
     },
     name:''
@@ -35,8 +35,8 @@ class MainPage extends React.Component {
         },
       });
       // console.log("ini nyoba lagii:", res.data.data);
-      this.setState({ name: res.data.data.name,  image_url: res.data.data.image_url});
-      // console.log("cek", res.data.data.image_url)
+      this.setState({ name: res.data.data.name,  image: res.data.data.image});
+      console.log("cek", res.data.data.image_url)
     } catch (error) {
       console.log(error);
     } 
@@ -57,8 +57,8 @@ class MainPage extends React.Component {
     // console.log('cek')
     e.preventDefault();
     let token = localStorage.getItem('token')
-    let formData = new FormData()
-    formData.append("image", this.state.image_url)
+    // let formData = new FormData()
+    // formData.append("image", {uri : this.state.image_url.file})
     console.log('cek,', this.state)
 
     axios({
@@ -67,7 +67,9 @@ class MainPage extends React.Component {
       headers: {
           Authorization: token
       },
-      data:formData
+      data: {
+        image: this.state.image
+      }
   })
   .then(res => {
       console.log("This is res update", res)
