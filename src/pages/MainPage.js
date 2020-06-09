@@ -35,7 +35,7 @@ class MainPage extends React.Component {
         },
       });
       // console.log("ini nyoba lagii:", res.data.data);
-      this.setState({ name: res.data.data.name,  image: res.data.data.image});
+      this.setState({ name: res.data.data.name,  image: res.data.data.image_url});
       console.log("cek", res.data.data.image_url)
     } catch (error) {
       console.log(error);
@@ -44,22 +44,24 @@ class MainPage extends React.Component {
 
   handleFileOnChange = (e) => {
     e.preventDefault();
-
+    console.log('masuk ga?')
     this.setState({
-      image: {
+      image_url: {
         value: e.target.value,
         file: e.target.files[0]
       }
     })
+    console.log(this.image_url)
   }
-
+  // console.log(this.state.image)
   handleSubmit = (e) => {
     // console.log('cek')
     e.preventDefault();
     let token = localStorage.getItem('token')
-    // let formData = new FormData()
-    // formData.append("image", {uri : this.state.image_url.file})
-    console.log('cek,', this.state)
+    let formData = new FormData()
+    formData.append("image", {uri : this.state.image_url})
+    console.log(formData)
+    console.log('cek state image,', this.state.image_url)
 
     axios({
       method: "POST",
@@ -68,7 +70,7 @@ class MainPage extends React.Component {
           Authorization: token
       },
       data: {
-        image: this.state.image
+        image: this.state.image_url.value
       }
   })
   .then(res => {

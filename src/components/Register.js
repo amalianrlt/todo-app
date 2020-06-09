@@ -94,7 +94,7 @@ class Register extends Component {
                   />
                   <Input
                     id="password"
-                    type="text" //nanti ganti ya
+                    type="password" //nanti ganti ya
                     placeholder="Password"
                     value={this.state.password}
                     onChange={this.onChangePassword}

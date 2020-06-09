@@ -74,7 +74,7 @@ class Login extends Component {
                   <Input className='mb-3'
                   style={{width:300}}
                   id="password"
-                  type="text" //nanti ganti ya
+                  type="password" //nanti ganti ya
                   placeholder="Password"
                   value={this.state.password}
                   onChange={this.onChangePassword}
@@ -85,7 +85,7 @@ class Login extends Component {
                       style={{ marginLeft: 85, paddingTop: 20 }}
                       className="have-account"
                     >
-                      I already have an account here
+                      I dont have an account here
                     </p>
                   </Link>
                 </FormGroup>

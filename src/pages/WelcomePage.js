@@ -45,7 +45,7 @@ class WelcomePage extends React.Component {
           </Card>
           <Card className="landing-page-text">
             <h1>Todo App</h1>
-            <h3>Let's Create Your Todo In a Easy Way</h3>
+            <h3>Let's Create Your Todo In an Easy Way</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
