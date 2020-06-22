@@ -70,7 +70,7 @@ class MainPage extends React.Component {
           Authorization: token
       },
       data: {
-        image: this.state.image_url.value
+        image: this.state.image_url.file
       }
   })
   .then(res => {
