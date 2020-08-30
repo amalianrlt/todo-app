@@ -1,5 +1,5 @@
 .mainpage-page{
-    background-color: lightgray;    
+    background-color: rgba(238, 238, 238, 0.568);    
     margin-top: -2rem;
     padding-bottom: 3rem;
     padding-top: 2rem;
@@ -23,7 +23,7 @@
 
 
 .card-todo-todo{
-    border-radius: 50px;
+    /* border-radius: 50px; */
     padding: 2rem;
     width: 40rem;
 }
@@ -34,7 +34,7 @@
     width: 60rem;
     margin-left: 200px;
     padding:0rem;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     background-color: white;
 }
 

@@ -17,7 +17,6 @@ class MainPage extends React.Component {
     },
     name:''
   };
-
   
   handleLogout = (e) => {
     e.preventDefault();
@@ -80,8 +79,6 @@ class MainPage extends React.Component {
   .catch(err=>{
       console.log("ERROR", err)
   })
-
-
   }
 
   render() {
